@@ -1,0 +1,206 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="${@environment.getProperty('template.site.name.base')}">
+
+<span layout:fragment="title" th:remove="tag" >Spring CMS</span>
+
+<h1 layout:fragment="main-title">Spring CMS</h1>
+
+<div th:remove="tag" layout:fragment="main-content">
+
+    <section id="services" class="emerald">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="media">
+                        <div class="pull-left">
+                            <i class="icon-twitter icon-md"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">Twitter Marketing</h3>
+                            <p>Are historical tweets needed? Or current tweets?</p>
+                        </div>
+                    </div>
+                </div><!--/.col-md-4-->
+                <div class="col-md-4 col-sm-6">
+                    <div class="media">
+                        <div class="pull-left">
+                            <i class="icon-facebook icon-md"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">Facebook Marketing</h3>
+                            <p>How many tweets are needed?</p>
+                        </div>
+                    </div>
+                </div><!--/.col-md-4-->
+                <div class="col-md-4 col-sm-6">
+                    <div class="media">
+                        <div class="pull-left">
+                            <i class="icon-google-plus icon-md"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3 class="media-heading">Google Plus Marketing</h3>
+                            <p>Does the researcher have funding to acquire Twitter data?</p>
+                        </div>
+                    </div>
+                </div><!--/.col-md-4-->
+            </div>
+        </div>
+    </section><!--/#services-->
+
+    <section id="blog" class="container">
+        <div class="row">
+                 
+            <div class="col-sm-12 ">
+                <div class="blog">
+                    
+                    <div th:each="content : ${contents}" class="blog-item">
+                        <img th:if="${content.fileName != ''}" class="img-responsive img-blog" th:src="@{/file/module/content/{fileName}(fileName=${content.fileName})}" width="100%" alt="" />
+                        <div class="blog-content">
+                            <a th:href="@{/content/show/{id}/{slug}(id=${content.id}, slug=${content.slug})}"><h3 th:text="${content.title}"></h3></a>
+                            <div class="entry-meta">
+                                <span><i class="icon-user"></i> <a href="#">John</a></span>
+                                <span th:if="content.category != null" ><i class="icon-folder-close"></i> <a th:href="@{${'/content/catList/{id}/{slug}'}(id=${content.category.id}, slug=${content.category.slug})}" th:text="${content.category.name}">Bootstrap</a></span>
+                                <span><i class="icon-calendar"></i> <span th:text="${content.createdAt}"></span></span>
+                                <span><i class="icon-comment"></i> <a href="blog-item.html#comments"><span th:remove="tag" th:text="${content.comments.size()}"></span> Comments</a></span>
+                            </div>
+                            <p th:utext="${content.content}"></p>
+                            <a class="btn btn-default" th:href="@{/content/show/{id}/{slug}(id=${content.id}, slug=${content.slug})}">Read More <i class="icon-angle-right"></i></a>
+                        </div>
+                    </div><!--/.blog-item-->
+                    <ul class="pagination pagination-lg">
+        <li th:class="true ? 'disabled' : ''">
+            <a th:if="true" th:href="@{${'/content/catList/{id}/{slug}'}(id=${category.id}, slug=${category.slug}, page=${pagination.number-1},size=${pagination.size})}">Previous</a>
+            <a th:if="true" href="javascript:void(0);">Previous</a>
+        </li>
+
+        <li th:each="pageNo : ${#numbers.sequence(0, pagination.totalPages - 1)}" th:class="${pagination.number eq (pageNo+1)}? 'active' : ''">
+            <a th:if="true" href="javascript:void(0);">
+                <span th:text="${pageNo + 1}"></span>
+            </a>
+            <a th:if="true" th:href="@{${'/content/catList/{id}/{slug}'}(id=${category.id}, slug=${category.slug}, page=${pageNo+1},size=${pagination.size})}">
+                <span th:text="${pageNo + 1}"></span>
+            </a>
+
+        </li>
+        <li th:class="true">
+            <a th:if="true" th:href="@{${'/content/catList/{id}/{slug}'}(id=${category.id}, slug=${category.slug}, page=${pagination.number+1},size=${pagination.size})}">Next</a>
+            <a th:if="true" href="javascript:void(0);">Next</a>
+        </li>
+    </ul><!--/.pagination-->
+                </div>
+            </div><!--/.col-md-8-->
+        </div><!--/.row-->
+    </section><!--/#blog-->
+
+    <section id="testimonial" class="alizarin">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center">
+                        <h2>What our clients say</h2>
+                        <p>Does the researcher need to share the Twitter dataset as part of publication / reproducible research?</p>
+                    </div>
+                    <div class="gap"></div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <blockquote>
+                                <p>What are the technical skills of the researcher?</p>
+                                <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+                            </blockquote>
+                            <blockquote>
+                                <p>What are the technical skills of the researcher?</p>
+                                <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+                            </blockquote>
+                        </div>
+                        <div class="col-md-6">
+                            <blockquote>
+                                <p>What are the technical skills of the researcher?</p>
+                                <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+                            </blockquote>
+                            <blockquote>
+                                <p>What are the technical skills of the researcher?</p>
+                                <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!--/#testimonial-->
+
+</div><!--/layout:fragment="main-content"-->
+
+
+
+<div layout:fragment="bottom-fragment">
+<script>
+$(document).ready(function($) {
+	
+	
+	
+	$("#comment-form").submit(function(event) {
+
+		// Prevent the form from submitting via the browser.
+		event.preventDefault();
+		test1();
+
+	});
+});
+
+function test1() {
+	
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	var url = $("#commentSaveUrl").val();
+	var id=1;
+	var content= $("#comment-form .content").val();
+	
+	$.ajax({ 
+		
+		contentType : "application/json",
+		dataType : 'json',
+		timeout : 100000,
+		beforeSend: function(xhr) {
+            // here it is
+            xhr.setRequestHeader(header, token);
+        },
+        type: 'POST',
+        url: url,
+        data: {id: id, content: content}
+    })
+    .done(function (data) {
+        console.debug(data);
+        if (data.status == "success") {
+        }
+        else if (data.status == "failed") {
+        }
+    });
+}
+
+function submitCommentjax() {
+	var data = {}
+	data["query"] = $("#query").val();
+
+	$.ajax({
+		type : "POST",
+		contentType : "application/json",
+		url : "${home}search/api/getSearchResult",
+		data : JSON.stringify(data),
+		dataType : 'json',
+		timeout : 100000,
+		success : function(data) {
+			console.log("SUCCESS: ", data);
+			display(data);
+		},
+		error : function(e) {
+			console.log("ERROR: ", e);
+			display(e);
+		},
+		done : function(e) {
+			console.log("DONE");
+		}
+	});
+}
+</script>
+</div>
+</html>
+
