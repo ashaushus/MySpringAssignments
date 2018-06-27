@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+ <html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+ 
+   <head>
+      <meta charset="UTF-8">
+      <title>Upload One File</title>
+   </head>
+   
+   <body>
+      <h3>Upload One File:</h3>
+       
+      <!-- MyUploadForm -->
+       
+      <form th:object="${myUploadForm}" method="POST"
+         action="" enctype="multipart/form-data">
+         Description:
+         <br>
+         <input th:field="*{description}" style="width:300px;"/>                
+         <br/><br/>  
+         File to upload: <input th:field="*{fileDatas}" type="file"/>
+         <br />  
+         <input type="submit" value="Upload">
+      </form>
+       
+   </body>
+</html>

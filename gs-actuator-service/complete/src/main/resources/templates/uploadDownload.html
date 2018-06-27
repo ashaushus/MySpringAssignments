@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+ <html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+ 
+   <head>
+      <meta charset="UTF-8">
+      <title>Spring Boot File Upload</title>
+   </head>
+    
+   <body>
+       
+      <h3>Spring Boot File Upload/Download</h3>
+       
+      <ul>
+        <li><a th:href="@{/uploadFile}">Upload File Example</a></li>
+        <li><a th:href="@{/downloadFile}">Download pdf Example</a></li>
+      </ul>
+       
+   </body>
+</html>
